@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>當AI遇到歷史學</title>
+  <style>
+    :root {
+      --bg: #f5f1ea;
+      --paper: #fffdf8;
+      --text: #2d2a26;
+      --subtext: #6a6258;
+      --accent: #7a4e2d;
+      --line: #ded6ca;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --max-width: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Serif TC", "PingFang TC", "Microsoft JhengHei", serif;
+      background: linear-gradient(180deg, #efe9df 0%, var(--bg) 220px, #f7f4ee 100%);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: 72px 20px 48px;
+      border-bottom: 1px solid rgba(122, 78, 45, 0.12);
+      background:
+        radial-gradient(circle at top left, rgba(122, 78, 45, 0.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(90, 70, 40, 0.08), transparent 28%),
+        transparent;
+    }
+
+    .hero-inner,
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid rgba(122, 78, 45, 0.24);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2rem, 4.2vw, 3.7rem);
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+    }
+
+    .meta {
+      color: var(--subtext);
+      font-size: 1rem;
+    }
+
+    .summary {
+      max-width: 760px;
+      margin-top: 26px;
+      font-size: 1.08rem;
+      color: #40392f;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 28px;
+      padding: 34px 0 72px;
+      align-items: start;
+    }
+
+    .post {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 34px 28px 40px;
+    }
+
+    .post p {
+      margin: 1.1em 0;
+      text-align: justify;
+    }
+
+    .post h2 {
+      font-size: 1.65rem;
+      margin: 2.4rem 0 1rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--line);
+      color: #332d27;
+    }
+
+    .dropcap::first-letter {
+      float: left;
+      font-size: 3.5rem;
+      line-height: 1;
+      padding-right: 0.12em;
+      padding-top: 0.08em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    figure {
+      margin: 2rem 0 2.2rem;
+    }
+
+    figure img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #f7f3ec;
+    }
+
+    figcaption {
+      margin-top: 0.8rem;
+      font-size: 0.96rem;
+      color: var(--subtext);
+      text-align: center;
+    }
+
+    .notes {
+      margin-top: 2.8rem;
+      padding-top: 1.6rem;
+      border-top: 1px dashed #cdbfaa;
+      color: var(--subtext);
+      font-size: 0.98rem;
+    }
+
+    .notes ol {
+      padding-left: 1.4rem;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255, 253, 248, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1rem;
+      color: #3b342d;
+    }
+
+    .toc {
+      padding-left: 1.1rem;
+      margin: 0;
+    }
+
+    .toc li + li {
+      margin-top: 0.5rem;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #efe5d6;
+      color: #67462e;
+      font-size: 0.88rem;
+    }
+
+    footer {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto 40px;
+      color: var(--subtext);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 54px;
+      }
+
+      .post {
+        padding: 24px 18px 30px;
+        border-radius: 18px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">歷史 × AI × 數位人文</div>
+      <h1>當AI遇到歷史學</h1>
+      <div class="meta">郭至汶｜國立嘉義大學應用歷史學系助理教授</div>
+      <p class="summary">
+        當人工智慧快速進入各個學術領域，歷史學也開始面對新的可能性與挑戰。本文以古希臘銘文修復模型 Ithaca 為例，思考 AI 如何協助歷史研究，並提出三個關鍵條件：明確課題、足夠資料、合適工具。
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="layout">
+      <article class="post">
+        <p class="dropcap">
+          2022年11月美國 OpenAI 公司發表聊天機器人 ChatGPT，很快便佔據全球主流媒體版面，一時之間 AI 成為各大領域關注的焦點。臺灣各界也高度重視人工智慧的發展，關注 AI 所帶來的機遇與挑戰。歷史學自然不例外，2024 年歷史學門主管會議便以「AI時代對歷史學研究的挑戰」為題進行研討，顯示歷史學者對此議題的高度關注。
+        </p>
+
+        <p>
+          他山之石，可以攻玉。當我們思考 AI 對歷史學的影響時，不妨先看幾個已經成功落地的例子。早在 2022 年 3 月，權威科學期刊 <em>Nature</em> 就刊登了 “Restoring and attributing ancient texts using deep neural networks” 一文，探討人工智慧如何應用於古典歷史研究。研究團隊以近八萬份古希臘銘文為資料集，利用深度神經網絡訓練模型，嘗試預測殘損銘文中的缺字部分，並將此模型命名為 <strong>Ithaca</strong>。
+        </p>
+
+        <figure id="fig1">
+          <img src="圖1.png" alt="古希臘銘文圖像" />
+          <figcaption>圖1　記錄雅典衛城法令的古希臘銘文</figcaption>
+        </figure>
+
+        <p>
+          古希臘銘文是研究西方文明史的重要材料，它們幫助學界理解古代西方的思想、語言與文化。然而，隨著時間推移，許多銘文已出現缺損，使得原文不易釋讀。Ithaca 模型可用於恢復受損文本；根據研究團隊統計，在 Ithaca 輔助下，歷史學家判讀受損銘文的正確率可由 25% 提升至 72%，大幅提高對文本的掌握度。除此之外，Ithaca 也能提供銘文寫定時間與所屬地理位置的推測，協助研究者建立重要的時空背景資訊。
+        </p>
+
+        <h2 id="section-1">三個要件</h2>
+
+        <p>
+          AI 能夠幫助歷史學者處理過去難以解決的問題，但前提是要滿足三個條件。第一，是必須有一個明確的歷史學課題。研究問題越清楚，AI 成功介入的可能性就越高；而課題越具有挑戰性，AI 與歷史學碰撞出的火花也往往越燦爛。
+        </p>
+
+        <p>
+          以 Ithaca 為例，研究團隊面對的是古希臘歷史中的一項核心難題：一組採用三欄西格瑪日期書寫慣例的銘文，究竟應當寫定於何時？這組銘文屬於公元前 5 世紀，涉及雅典帝國形成時期的重要政治法令，因此其年代判斷與雅典帝國史的理解息息相關。Ithaca 對這組銘文的判定是公元前 421 年，而這個結論恰好與近年學界的新論點相互呼應。
+        </p>
+
+        <p>
+          類似的方法也能應用到其他類型的歷史研究。與 Ithaca 問世幾乎同時，<em>Science</em> 刊登了 “Forgotten books: The application of unseen species models to the survival of culture” 一文。這篇研究透過生態統計模型探討一個耐人尋味的歷史問題：中世紀歐洲究竟有多少書籍毀於天災與戰亂？研究團隊估計約有 91% 的書籍已經消失，僅 9% 留存至今，並發現島嶼地區如冰島、愛爾蘭的書籍損毀率低於歐洲大陸。這類研究也提醒我們，歷史學與其他學科的方法整合，往往能帶來新的理解。
+        </p>
+
+        <figure id="fig2">
+          <img src="圖2.png" alt="戰火中倖存的書籍圖像" />
+          <figcaption>圖2　戰火中倖存的書籍</figcaption>
+        </figure>
+
+        <p>
+          第二個要件，是要有足夠且有效的資料提供機器訓練。Ithaca 最終使用 78,608 份銘文資料進行訓練，但這些資料並非原封不動拿來使用。研究團隊先從更大規模的原始資料庫中刪除重複文本與過短內容，再篩選出同時具備時間與地點資訊的資料，最後才得到足以支撐模型運作的高品質語料。這也呼應資訊科學常說的一句話：<em>Garbage in, garbage out</em>。
+        </p>
+
+        <p>
+          第三個要件，是要有合適的工具。與前兩者相比，工具的選擇更容易受到時代技術的限制。Ithaca 使用的是 Transformer 架構，藉由自注意力機制更有效掌握文字上下文。研究團隊在此之前也曾開發過另一個模型 Pythia，但因其採用循環神經網絡（RNN），在處理文字脈絡時的效果不如 Transformer。兩者相比，Ithaca 對古希臘銘文缺字補遺的表現更佳，也因此成為歷史研究中的代表性案例。
+        </p>
+
+        <p>
+          透過這些案例，我們或許可以更清楚地看見：AI 並不是取代歷史學者，而是成為一種新的研究工具。它的真正價值，不在於給出「唯一正確答案」，而在於幫助研究者更快地整理資料、發現模式、提出新的問題，從而開拓歷史研究的可能邊界。
+        </p>
+
+        <section class="notes">
+          <strong>註釋</strong>
+          <ol>
+            <li>Yannis Assael, Thea Sommerschield et al., “Restoring and attributing ancient texts using deep neural networks,” <em>Nature</em> (2022).</li>
+            <li>“Forgotten books: The application of unseen species models to the survival of culture,” <em>Science</em> (2022).</li>
+            <li>Pythia 為 Ithaca 問世前的相關古希臘銘文補遺模型。</li>
+          </ol>
+        </section>
+      </article>
+
+      <aside class="sidebar">
+        <section class="card">
+          <h3>文章導覽</h3>
+          <ol class="toc">
+            <li><a href="#fig1">古希臘銘文</a></li>
+            <li><a href="#section-1">三個要件</a></li>
+            <li><a href="#fig2">戰火中倖存的書籍</a></li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <h3>關鍵字</h3>
+          <div class="badge-list">
+            <span class="badge">人工智慧</span>
+            <span class="badge">歷史學</span>
+            <span class="badge">Ithaca</span>
+            <span class="badge">數位人文</span>
+            <span class="badge">古希臘銘文</span>
+            <span class="badge">Transformer</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>使用方式</h3>
+          <p>
+            將此檔案命名為 <code>index.html</code>，並與 <code>圖1.png</code>、<code>圖2.png</code> 放在同一個資料夾，即可直接開啟瀏覽。
+          </p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    本頁為單檔靜態網誌範例，可再依需求加入更多段落、註腳、作者資訊或導覽頁。
+  </footer>
+</body>
+</html>
+ 
